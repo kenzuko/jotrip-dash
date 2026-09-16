@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>JoTrip Operations - Review V4</title>
+  <meta name="theme-color" content="#071f20">
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+  <link rel="stylesheet" href="./review-v4.css?v=20260916-1">
+</head>
+<body>
+  <div class="review-shell" id="reviewShell">
+    <aside class="review-sidebar" id="reviewSidebar">
+      <div class="review-brand"><img src="./brand-logo.svg" alt="JoTrip"><span>OPS</span></div>
+      <div class="review-title"><small>DESIGN REVIEW V4</small><b>24 màn hình</b><p>Duyệt visual + UX trước khi merge vào production.</p></div>
+      <label class="review-search"><i data-lucide="search"></i><input id="screenSearch" placeholder="Tìm màn hình..."></label>
+      <nav id="screenNav" class="screen-nav"></nav>
+      <div class="review-sidebar-foot"><a href="./index.html"><i data-lucide="arrow-left"></i> Quay lại Dashboard</a><small>Weather + Airport: READ ONLY</small></div>
+    </aside>
+
+    <main class="review-main">
+      <header class="review-topbar">
+        <button class="mobile-menu" id="mobileMenu"><i data-lucide="menu"></i></button>
+        <div class="review-breadcrumb"><span>JoTrip Operations</span><i data-lucide="chevron-right"></i><b id="currentScreenName">Command Center</b></div>
+        <div class="review-tools">
+          <div class="source-health" id="sourceHealth"><span class="health-dot warn"></span><b>Đang đồng bộ</b><small>Weather · Airport</small></div>
+          <button class="tool-btn active" data-preview="desktop"><i data-lucide="monitor"></i><span>Desktop</span></button>
+          <button class="tool-btn" data-preview="tablet"><i data-lucide="tablet"></i><span>Tablet</span></button>
+          <button class="tool-btn" data-preview="mobile"><i data-lucide="smartphone"></i><span>Mobile</span></button>
+          <button class="tool-btn" id="toggleNotes"><i data-lucide="message-square-text"></i><span>Notes</span></button>
+        </div>
+      </header>
+
+      <section class="review-stage-wrap">
+        <div class="review-stage desktop" id="reviewStage">
+          <div class="prototype-chrome">
+            <aside class="proto-sidebar">
+              <div class="proto-brand"><img src="./brand-logo.svg" alt="JoTrip"><span>OPS</span></div>
+              <div class="proto-env"><span></span><div><b>PHÚ QUỐC</b><small>INTERNAL OPERATIONS</small></div></div>
+              <div class="proto-nav" id="protoNav"></div>
+              <div class="proto-side-foot"><button><i data-lucide="plus"></i>Tạo nhanh</button><small>SYNC · READ ONLY UPSTREAM</small></div>
+            </aside>
+            <div class="proto-main">
+              <div class="proto-topbar">
+                <label><i data-lucide="search"></i><span>Tìm tour, booking, khách, HDV, xe, cano...</span><kbd>⌘K</kbd></label>
+                <div class="proto-live"><span class="live-dot"></span><div><b id="protoHealth">Nguồn đang đọc</b><small id="protoHealthMeta">Weather · Airport</small></div></div>
+                <div class="proto-weather" id="protoWeather"><i data-lucide="sun-medium"></i><div><b>--°C</b><small>Phú Quốc</small></div></div>
+                <div class="proto-user"><div class="avatar">KA</div><div><b>Ken Anh</b><small>Administrator</small></div></div>
+              </div>
+              <div class="screen-canvas" id="screenCanvas"></div>
+              <nav class="mobile-bottom" id="mobileBottom"></nav>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <aside class="review-notes" id="reviewNotes" hidden>
+      <div class="notes-head"><div><small>REVIEW NOTE</small><b id="notesTitle">Command Center</b></div><button id="closeNotes"><i data-lucide="x"></i></button></div>
+      <div class="notes-body">
+        <div class="note-block"><span>Mục tiêu màn hình</span><p id="notesGoal"></p></div>
+        <div class="note-block"><span>Điểm cần duyệt</span><ul id="notesChecks"></ul></div>
+        <div class="note-block"><span>Data policy</span><p>Weather và Airport chỉ đọc snapshot upstream. Dữ liệu nội bộ trong Review V4 là preview để duyệt UX, không phải production record.</p></div>
+      </div>
+    </aside>
+  </div>
+  <script src="./config.js"></script>
+  <script src="./ops-data.js"></script>
+  <script src="./review-v4.js?v=20260916-1"></script>
+</body>
+</html>
