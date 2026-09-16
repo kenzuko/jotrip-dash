@@ -1,0 +1,1 @@
+Binary JoTrip wordmark is stored separately as brand-logo.png. Source: user-provided JoTrip logo, cropped/transparent only; no redraw.
