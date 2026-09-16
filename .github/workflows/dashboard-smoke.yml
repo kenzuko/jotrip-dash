@@ -1,0 +1,30 @@
+name: Dashboard Smoke
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check JavaScript syntax
+        run: |
+          node --check app.js
+          node --check ops-data.js
+          node --check ops-extended.js
+          node --check config.js
+      - name: Check required static assets
+        run: |
+          test -s index.html
+          test -s styles.css
+          test -s ops-extended.css
+          test -s brand-logo.png
+          grep -q '^dash.openphuquoc.com$' CNAME
+          grep -q 'Weather & Marine' index.html
+          grep -q 'Airport Live' index.html
