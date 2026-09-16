@@ -1,4 +1,3 @@
-window.JOTRIP_LOGO_DATA = "./logo.png";
 window.JOTRIP_CONFIG = {
   repo: "kenzuko/Jotrip-Lab",
   weatherBranch: "feat/weather-lab-data-engine-v1",
@@ -6,10 +5,12 @@ window.JOTRIP_CONFIG = {
   weatherWebUrl: null,
   airportWebUrl: "https://airport.openphuquoc.com",
   refreshMs: 120000,
-  staleMinutes: {
-    weather: 180,
-    airQuality: 360,
-    tide: 180,
-    airport: 30
+  staleMinutes: { weather: 180, airQuality: 360, tide: 180, airport: 30 },
+  auth: {
+    mode: "local-preview",
+    provider: "supabase",
+    supabaseUrl: "",
+    supabaseAnonKey: "",
+    inviteFunctionUrl: ""
   }
 };
