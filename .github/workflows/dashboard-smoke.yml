@@ -18,6 +18,7 @@ jobs:
           node --check app.js
           node --check ops-data.js
           node --check ops-extended.js
+          node --check ops-actions.js
           node --check config.js
       - name: Check required static assets
         run: |
