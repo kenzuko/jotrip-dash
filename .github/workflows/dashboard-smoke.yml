@@ -24,7 +24,7 @@ jobs:
           test -s index.html
           test -s styles.css
           test -s ops-extended.css
-          test -s brand-logo.png
+          test -s brand-logo.svg
           grep -q '^dash.openphuquoc.com$' CNAME
           grep -q 'Weather & Marine' index.html
           grep -q 'Airport Live' index.html
