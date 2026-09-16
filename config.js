@@ -16,18 +16,25 @@ window.JOTRIP_CONFIG = {
 };
 
 document.addEventListener('DOMContentLoaded',()=>{
-  const css=document.createElement('link');
-  css.rel='stylesheet';
-  css.href='./ops-extended.css?v=20260916-2';
-  document.head.appendChild(css);
+  ['./ops-extended.css?v=20260916-3','./command-v3.css?v=20260916-3'].forEach(href=>{
+    const css=document.createElement('link');
+    css.rel='stylesheet';
+    css.href=href;
+    document.head.appendChild(css);
+  });
   const data=document.createElement('script');
-  data.src='./ops-data.js?v=20260916-2';
+  data.src='./ops-data.js?v=20260916-3';
   data.onload=()=>{
     const ext=document.createElement('script');
-    ext.src='./ops-extended.js?v=20260916-2';
+    ext.src='./ops-extended.js?v=20260916-3';
     ext.onload=()=>{
       const actions=document.createElement('script');
-      actions.src='./ops-actions.js?v=20260916-2';
+      actions.src='./ops-actions.js?v=20260916-3';
+      actions.onload=()=>{
+        const v3=document.createElement('script');
+        v3.src='./command-v3.js?v=20260916-3';
+        document.body.appendChild(v3);
+      };
       document.body.appendChild(actions);
     };
     document.body.appendChild(ext);
