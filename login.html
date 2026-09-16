@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>Đăng nhập - JoTrip Operations</title>
+  <meta name="theme-color" content="#071f20">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <link rel="stylesheet" href="./login.css">
+</head>
+<body data-page="login">
+  <main class="login-shell">
+    <section class="login-brand">
+      <img src="./brand-logo.svg" alt="JoTrip">
+      <div class="login-brand-copy">
+        <small>PHÚ QUỐC · INTERNAL OPERATIONS</small>
+        <h1>Một bàn điều hành.<br>Mọi thứ cần xử lý.</h1>
+        <p>Tour, booking, khách, đối tác, nhân sự, vận tải và live intelligence trong cùng một hệ thống.</p>
+      </div>
+      <div class="login-brand-foot">Weather & Airport được đọc từ upstream riêng - Dashboard không ghi ngược.</div>
+    </section>
+    <section class="login-panel">
+      <div id="authBadge" class="auth-badge preview"><i data-lucide="shield-check"></i><span id="authBadgeText">LOCAL PREVIEW</span></div>
+      <h2>Đăng nhập JoTrip</h2>
+      <p>Dùng tài khoản nội bộ được cấp. Vai trò và phạm vi dữ liệu được kiểm soát theo quyền.</p>
+      <form id="loginForm" class="form-grid">
+        <label class="field"><span>Email</span><input id="email" type="email" autocomplete="username" placeholder="ten@jotrip.vn" required></label>
+        <label class="field"><span>Mật khẩu</span><input id="password" type="password" autocomplete="current-password" placeholder="••••••••" required></label>
+        <button id="loginButton" class="login-btn" type="submit"><i data-lucide="log-in"></i>Đăng nhập</button>
+      </form>
+      <div id="loginError" class="login-error"></div>
+      <div id="previewBox" class="preview-box"><b>Chưa bật đăng nhập production.</b>Trang này đã sẵn sàng cho Supabase Auth. Hiện dashboard vẫn ở chế độ local preview để hoàn thiện giao diện và luồng phân quyền.</div>
+      <a class="back-link" href="./"><i data-lucide="arrow-left"></i>Quay lại Dashboard</a>
+      <div class="security-copy">Khi bật production, session đăng nhập chỉ là lớp giao diện. Quyền đọc/ghi dữ liệu nội bộ phải tiếp tục được enforce ở backend bằng RLS.</div>
+    </section>
+  </main>
+  <script src="./config.js"></script>
+  <script src="./login.js"></script>
+  <script>window.addEventListener('DOMContentLoaded',()=>window.lucide?.createIcons?.({'stroke-width':1.8}))</script>
+</body>
+</html>
