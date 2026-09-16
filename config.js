@@ -14,3 +14,18 @@ window.JOTRIP_CONFIG = {
     inviteFunctionUrl: ""
   }
 };
+
+document.addEventListener('DOMContentLoaded',()=>{
+  const css=document.createElement('link');
+  css.rel='stylesheet';
+  css.href='./ops-extended.css?v=20260916-1';
+  document.head.appendChild(css);
+  const data=document.createElement('script');
+  data.src='./ops-data.js?v=20260916-1';
+  data.onload=()=>{
+    const ext=document.createElement('script');
+    ext.src='./ops-extended.js?v=20260916-1';
+    document.body.appendChild(ext);
+  };
+  document.body.appendChild(data);
+});
