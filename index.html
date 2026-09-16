@@ -1,104 +1,85 @@
 <!doctype html>
 <html lang="vi">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <title>JoTrip Operations - Phú Quốc</title>
-  <meta name="description" content="JoTrip internal operations dashboard for Phú Quốc." />
-  <link rel="canonical" href="https://dash.openphuquoc.com/" />
-  <meta name="theme-color" content="#062c2d" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>JoTrip Operations</title>
+  <meta name="description" content="JoTrip internal operations center for Phú Quốc">
+  <meta name="theme-color" content="#071f20">
+  <link rel="canonical" href="https://dash.openphuquoc.com/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./styles.css" />
+  <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+  <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
+  <div class="brand-rail"></div>
   <div id="app" class="app-shell">
     <aside class="sidebar" id="sidebar">
-      <div class="brand-wrap">
-        <img id="brandLogo" class="brand-logo" alt="JoTrip" />
-        <button class="icon-btn sidebar-collapse" id="sidebarCollapse" aria-label="Thu gọn menu">☰</button>
-      </div>
-
-      <nav class="main-nav" id="mainNav">
-        <button class="nav-item" data-view="overview"><span>⌂</span><b>Tổng quan</b></button>
-        <button class="nav-item" data-view="tasks"><span>✓</span><b>Việc cần làm</b><i class="count danger" id="taskBadge">0</i></button>
-        <button class="nav-item active" data-view="today"><span>▣</span><b>Điều hành hôm nay</b></button>
-        <button class="nav-item" data-view="tours"><span>▤</span><b>Tour & Booking</b></button>
-        <button class="nav-item" data-view="customers"><span>♙</span><b>Khách hàng</b></button>
-        <button class="nav-item" data-view="partners"><span>♧</span><b>Đối tác</b></button>
-        <button class="nav-item group-toggle" data-group="transport"><span>⌁</span><b>Vận tải & điều kiện</b><em>⌄</em></button>
-        <div class="nav-group open" data-group-panel="transport">
-          <button class="nav-item child" data-view="airport"><span>✈</span><b>Chuyến bay</b><i class="count" id="airportBadge">-</i></button>
-          <button class="nav-item child" data-view="ferries"><span>◉</span><b>Tàu & phà</b></button>
-          <button class="nav-item child" data-view="weather"><span>☂</span><b>Thời tiết & biển</b></button>
-          <button class="nav-item child" data-view="map"><span>⌖</span><b>Bản đồ</b></button>
+      <div class="brand-zone">
+        <div class="brand-lockup">
+          <img src="./brand-logo.png" alt="JoTrip" class="brand-logo">
+          <span class="ops-mark">OPS</span>
         </div>
-        <button class="nav-item" data-view="people"><span>♙</span><b>Nhân sự & công việc</b></button>
-        <button class="nav-item" data-view="data"><span>▥</span><b>Dữ liệu & nguồn</b><i class="count warn" id="sourceBadge">...</i></button>
-        <button class="nav-item" data-view="reports"><span>▥</span><b>Báo cáo</b></button>
-        <button class="nav-item" data-view="settings"><span>⚙</span><b>Cài đặt</b></button>
+        <button class="icon-btn ghost" id="sidebarCollapse" aria-label="Thu gọn menu"><i data-lucide="panel-left-close"></i></button>
+      </div>
+      <div class="environment"><span class="pulse"></span><b>PHÚ QUỐC</b><small>INTERNAL OPERATIONS</small></div>
+      <nav class="main-nav" id="mainNav">
+        <div class="nav-label">Điều hành</div>
+        <button class="nav-item" data-view="overview"><i data-lucide="layout-dashboard"></i><span>Tổng quan</span></button>
+        <button class="nav-item active" data-view="today"><i data-lucide="activity"></i><span>Điều hành hôm nay</span></button>
+        <button class="nav-item" data-view="tasks"><i data-lucide="list-checks"></i><span>Việc cần làm</span><em class="count danger" id="taskBadge">0</em></button>
+        <div class="nav-label">Nghiệp vụ</div>
+        <button class="nav-item" data-view="tours"><i data-lucide="calendar-days"></i><span>Tour & Booking</span></button>
+        <button class="nav-item" data-view="customers"><i data-lucide="users"></i><span>Khách hàng</span></button>
+        <button class="nav-item" data-view="partners"><i data-lucide="handshake"></i><span>Đối tác</span></button>
+        <button class="nav-item" data-view="people"><i data-lucide="briefcase-business"></i><span>Nhân sự & công việc</span></button>
+        <div class="nav-label">Live intelligence</div>
+        <button class="nav-item upstream" data-view="airport"><i data-lucide="plane"></i><span>Airport Live</span><em class="count info" id="airportBadge">-</em></button>
+        <button class="nav-item" data-view="ferries"><i data-lucide="ship"></i><span>Tàu & phà</span></button>
+        <button class="nav-item upstream" data-view="weather"><i data-lucide="cloud-sun"></i><span>Weather & Marine</span><em class="source-dot" id="weatherDot"></em></button>
+        <button class="nav-item" data-view="map"><i data-lucide="map"></i><span>Bản đồ</span></button>
+        <div class="nav-label">Hệ thống</div>
+        <button class="nav-item" data-view="data"><i data-lucide="database"></i><span>Dữ liệu & nguồn</span><em class="count neutral" id="sourceBadge">...</em></button>
+        <button class="nav-item" data-view="reports"><i data-lucide="chart-no-axes-combined"></i><span>Báo cáo</span></button>
+        <button class="nav-item admin-only" data-view="accounts"><i data-lucide="shield-check"></i><span>Tài khoản & phân quyền</span></button>
+        <button class="nav-item" data-view="settings"><i data-lucide="settings-2"></i><span>Cài đặt</span></button>
       </nav>
-
-      <div class="quick-wrap">
-        <button class="quick-btn" id="quickCreate">＋ <span>Tạo nhanh</span></button>
-      </div>
-
-      <div class="sidebar-foot">
-        <div class="island-art"></div>
-        <div><strong>Phú Quốc</strong><br><span>Good journeys.<br>Better people.</span></div>
-      </div>
+      <div class="sidebar-action"><button class="quick-btn" id="quickCreate"><i data-lucide="plus"></i><span>Tạo nhanh</span><kbd>N</kbd></button></div>
+      <div class="sidebar-status"><div><span>SYNC</span><b id="sidebarSync">Đang đọc nguồn</b></div><small>Weather + Airport read-only</small></div>
     </aside>
 
     <main class="main-area">
       <header class="topbar">
-        <div class="mobile-brand">
-          <button class="icon-btn" id="mobileMenu">☰</button>
-          <img id="mobileLogo" alt="JoTrip" />
-        </div>
-        <label class="global-search">
-          <span>⌕</span>
-          <input id="globalSearch" placeholder="Tìm tour, khách hàng, booking, HDV, xe, cano, đối tác..." />
-          <kbd>⌘ K</kbd>
-        </label>
+        <div class="mobile-brand"><button class="icon-btn ghost" id="mobileMenu"><i data-lucide="menu"></i></button><img src="./brand-logo.png" alt="JoTrip"></div>
+        <label class="global-search"><i data-lucide="search"></i><input id="globalSearch" placeholder="Tìm tour, booking, khách, HDV, xe, cano, chuyến bay..."><kbd>⌘ K</kbd></label>
         <div class="top-meta">
-          <span id="clockText">--</span>
-          <span class="system-state"><i class="dot ok"></i><b id="systemText">Đang đồng bộ nguồn</b></span>
-          <span class="weather-chip" id="topWeather">Phú Quốc --°C</span>
-          <button class="icon-btn">🔔</button>
-          <div class="user-chip">
-            <div class="avatar">KA</div>
-            <div><b>Ken Anh</b><span>Administrator</span></div>
-          </div>
+          <div class="clock-block"><b id="clockText">--</b><small id="dateText">--</small></div>
+          <div class="health-chip" id="healthChip"><span class="dot warn"></span><div><b id="systemText">Đang đồng bộ</b><small id="healthMeta">Weather · Airport</small></div></div>
+          <div class="weather-mini" id="topWeather"><i data-lucide="sun-medium"></i><div><b>--°C</b><small>Phú Quốc</small></div></div>
+          <button class="icon-btn top-icon"><i data-lucide="bell"></i><span class="notify-dot"></span></button>
+          <button class="profile-button" id="profileButton"><div class="avatar" id="topAvatar">KA</div><div><b id="topUserName">Ken Anh</b><small id="topUserRole">Administrator</small></div><i data-lucide="chevron-down"></i></button>
         </div>
       </header>
-
       <section class="page" id="pageRoot"></section>
     </main>
   </div>
 
   <nav class="mobile-dock" id="mobileDock">
-    <button data-view="overview"><span>⌂</span><b>Tổng quan</b></button>
-    <button data-view="today" class="active"><span>▣</span><b>Điều hành</b></button>
-    <button data-view="tours"><span>▤</span><b>Tour</b></button>
-    <button data-view="tasks"><span>!</span><b>Cảnh báo</b></button>
-    <button id="mobileMore"><span>•••</span><b>Thêm</b></button>
+    <button data-view="today" class="active"><i data-lucide="activity"></i><b>Điều hành</b></button>
+    <button data-view="tours"><i data-lucide="calendar-days"></i><b>Tour</b></button>
+    <button data-view="tasks"><i data-lucide="triangle-alert"></i><b>Cảnh báo</b></button>
+    <button data-view="airport"><i data-lucide="plane"></i><b>Airport</b></button>
+    <button id="mobileMore"><i data-lucide="menu"></i><b>Thêm</b></button>
   </nav>
 
-  <div class="modal-backdrop" id="modalBackdrop" hidden>
-    <div class="modal" role="dialog" aria-modal="true">
-      <div class="modal-head"><div><small>JoTrip Operations</small><h3 id="modalTitle">Tạo nhanh</h3></div><button class="icon-btn" id="modalClose">✕</button></div>
-      <div id="modalBody"></div>
-    </div>
-  </div>
-
+  <div class="modal-backdrop" id="modalBackdrop" hidden><div class="modal" role="dialog" aria-modal="true"><div class="modal-head"><div><small>JOTRIP OPERATIONS</small><h3 id="modalTitle">Tạo nhanh</h3></div><button class="icon-btn" id="modalClose"><i data-lucide="x"></i></button></div><div id="modalBody"></div></div></div>
   <div class="drawer-backdrop" id="drawerBackdrop" hidden></div>
-  <aside class="drawer" id="drawer" aria-hidden="true">
-    <div class="drawer-head"><div><small id="drawerKicker">CHI TIẾT</small><h3 id="drawerTitle">-</h3></div><button class="icon-btn" id="drawerClose">✕</button></div>
-    <div id="drawerBody"></div>
-  </aside>
+  <aside class="drawer" id="drawer" aria-hidden="true"><div class="drawer-head"><div><small id="drawerKicker">CHI TIẾT</small><h3 id="drawerTitle">-</h3></div><button class="icon-btn" id="drawerClose"><i data-lucide="x"></i></button></div><div id="drawerBody"></div></aside>
+  <div class="toast-stack" id="toastStack"></div>
 
   <script src="./config.js"></script>
-  <script src="./app-compact.js"></script>
+  <script src="./app.js"></script>
 </body>
 </html>
